@@ -1,0 +1,29 @@
+{
+    "apple":{
+        "group":["group1"],
+        "user": ["testuser"]
+    },
+    "lemon":{
+        "group":["group1"],
+        "user": ["testuser1"],
+        "port": "22",
+        "agent": "True",
+        "identity": "",
+        "verbose": ""
+    },
+    "blue":{
+        "group":["group2"],
+        "user": ["testuser1"],
+        "port": "",
+        "identity": "",
+        "verbose": ""
+    },
+    "red":{
+        "group":["group2"],
+        "user": ["testuser2"],
+        "port": "2222",
+        "agent": "True",
+        "identity": "~/.ssh/test_rsa",
+        "verbose": "2"
+    }
+}
