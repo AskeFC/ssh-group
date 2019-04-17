@@ -9,7 +9,8 @@
         "port": "22",
         "agent": "True",
         "identity": "",
-        "verbose": ""
+        "verbose": "",
+        "cmd":["sudo -i"]
     },
     "blue":{
         "group":["group2"],
