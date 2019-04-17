@@ -22,14 +22,15 @@ Thx a lot to https://github.com/dr1s/terminator-plugins where I got some code.
 
    See: cluster_connect_config/config.json
 
-   Options:	
-  
-        - user: Username (not provided will use current user)
-        - group: Group name for submenu.
-        - agent: True or False, if true then ssh agent is enabled and -A Option is added to command
-        - port: set ssh port to something else than default
-        - identity: specify path to a ssh-key-file
-        - verbose: 1, 2 or 3 for -v, -vv or -vvv
+   Options:
+   
+           - user: Username (not provided will use current user)
+           - group: Group name for submenu.
+           - agent: True or False, if true then ssh agent is enabled and -A Option is added to command
+           - port: set ssh port to something else than default
+           - identity: specify path to a ssh-key-file
+           - verbose: 1, 2 or 3 for -v, -vv or -vvv
+	   - cmd: command executed after login e.g "sudo -i" or "pwd; ls -l"
 
 4. Restart [Terminator](http://www.tenshu.net/p/terminator.html)
 
