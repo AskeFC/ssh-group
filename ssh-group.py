@@ -61,7 +61,7 @@ class SSHGroup(plugin.Plugin):
         item.set_submenu(submenu)
 
         # create groupdict for submenu
-        for group, servers in groupdict.items():
+        for group, servers in sorted(groupdict.items()):
             sub_groups = self.add_submenu(submenu, group)
             servers.sort()
             for server in servers:
