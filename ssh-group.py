@@ -48,8 +48,6 @@ class SSHGroup(plugin.Plugin):
         self.config = Config()
         for server, option in SSHGROUP.items():
             group = self.get_property(server, 'group')
-            # server = str.join("", server)
-            # print(group, server)
             if group not in groupdict:
                 groupdict[group] = [server]
             else:
@@ -104,16 +102,16 @@ class SSHGroup(plugin.Plugin):
 
     def connect_server(self, widget,  terminal, server, user, option):
         focussed_terminal = None
-        term_window = terminal.terminator.windows[0]
-
-        visible_terminals_temp = term_window.get_visible_terminals()
-
+        term_windows = terminal.terminator.get_windows()
+        
         if option == 'H':
             terminal.key_split_horiz()
         elif option == 'V':
             terminal.key_split_vert()
         elif option == 'T':
-            term_window.tab_new(term_window.get_focussed_terminal())
+            for term_window in term_windows:
+                term_window.tab_new(term_window.get_focussed_terminal())
+
 
         visible_terminals = term_window.get_visible_terminals()
         for visible_terminal in visible_terminals:
