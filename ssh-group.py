@@ -111,13 +111,11 @@ class SSHGroup(plugin.Plugin):
         elif option == 'T':
             for term_window in term_windows:
                 term_window.tab_new(term_window.get_focussed_terminal())
-
-
-        visible_terminals = term_window.get_visible_terminals()
-        for visible_terminal in visible_terminals:
-            if visible_terminal not in visible_terminals_temp:
-                terminal2 = visible_terminal
-        self.start_ssh(terminal2, user, server)
+                
+        for term_window in term_windows:
+            focussed_terminal = term_window.get_focussed_terminal()
+                
+        self.start_ssh(focused_terminal, user, server)
 
     def start_ssh(self, terminal, user, server):
         # Function to generate the ssh command, with specified options
