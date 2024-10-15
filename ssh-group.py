@@ -154,28 +154,28 @@ class SSHGroup(plugin.Plugin):
         # Check if a command was generated an pass it to the terminal
         if command[len(command) - 1] != '\n':
             command += '\n'
-            self.feed_child(terminal, command)
+            self.feed_child(terminal.encode('utf-8'))
 
     def feed_child(self, terminal, command):
         # get post command
         cmd = self.get_property(server, 'cmd')
 
         try:
-            terminal.vte.feed_child(str(command))
+            terminal.vte.feed_child(str(command).encode('utf-8'))
         except TypeError:
-            terminal.vte.feed_child(command, len(command))
+            terminal.vte.feed_child(command.encode('utf-8'))
 
         # send post command to terminal
         if type(cmd) != bool and cmd[len(cmd) - 1] != '\n':
             cmd += '\n'
             try:
-                terminal.vte.feed_child(cmd)
+                terminal.vte.feed_child(cmd.encode('utf-8'))
             except TypeError:
-                terminal.vte.feed_child(cmd, len(cmd))
+                terminal.vte.feed_child(cmd.encode('utf-8'))
 
     def get_property(self, server, prop, default=False):
         # Check if property and server exsist return true else return false
-        if SSHGROUP.has_key(server) and SSHGROUP[server].has_key(prop):
+        if SSHGROUP.__contains__(server) and SSHGROUP[server].__contains__(prop):
             return str.join("", SSHGROUP[server][prop])
         else:
             return default
