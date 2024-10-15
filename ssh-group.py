@@ -12,8 +12,8 @@ import os
 import re
 import itertools
 import gi
-gi.require_version('Gtk', '3.0')
 
+gi.require_version('Gtk', '3.0')
 
 pluginpath = os.path.dirname(os.path.realpath(__file__))
 configpath = (pluginpath + "/ssh-group-config")
@@ -32,8 +32,7 @@ for root, dirs, files in os.walk(configpath):
                     else:
                         SSHGROUP.update(json.load(data_file))
             except Exception as e:
-                print("Error loading "+filename+": "+str(e))
-
+                print("Error loading " + filename + ": " + str(e))
 
 AVAILABLE = ['SSHGroup']
 current_user = getpass.getuser()
@@ -100,10 +99,10 @@ class SSHGroup(plugin.Plugin):
                          user, 'T')
         sub_split.append(menuitem)
 
-    def connect_server(self, widget,  terminal, server, user, option):
+    def connect_server(self, widget, terminal, server, user, option):
         focussed_terminal = None
         term_windows = terminal.terminator.get_windows()
-        
+
         if option == 'H':
             terminal.key_split_horiz()
         elif option == 'V':
@@ -111,10 +110,10 @@ class SSHGroup(plugin.Plugin):
         elif option == 'T':
             for term_window in term_windows:
                 term_window.tab_new(term_window.get_focussed_terminal())
-                
+
         for term_window in term_windows:
             focussed_terminal = term_window.get_focussed_terminal()
-                
+
         self.start_ssh(focused_terminal, user, server)
 
     def start_ssh(self, terminal, user, server):
@@ -160,12 +159,12 @@ class SSHGroup(plugin.Plugin):
     def feed_child(self, terminal, command):
         # get post command
         cmd = self.get_property(server, 'cmd')
-        
+
         try:
             terminal.vte.feed_child(str(command))
         except TypeError:
             terminal.vte.feed_child(command, len(command))
-            
+
         # send post command to terminal
         if type(cmd) != bool and cmd[len(cmd) - 1] != '\n':
             cmd += '\n'
@@ -173,7 +172,7 @@ class SSHGroup(plugin.Plugin):
                 terminal.vte.feed_child(cmd)
             except TypeError:
                 terminal.vte.feed_child(cmd, len(cmd))
-                
+
     def get_property(self, server, prop, default=False):
         # Check if property and server exsist return true else return false
         if SSHGROUP.has_key(server) and SSHGROUP[server].has_key(prop):
